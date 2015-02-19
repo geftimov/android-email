@@ -88,18 +88,27 @@ public class EmailService extends javax.mail.Authenticator {
             }
 
             final To toAnnotation = methodInfo.getToAnnotation();
-            message.setRecipients(Message.RecipientType.TO, toAnnotation.value());
+            final String toText = changeIfInParameters(toAnnotation.value(), pathParameters, args);
+            message.setRecipients(Message.RecipientType.TO, toText);
 
             final Cc ccAnnotation = methodInfo.getCcAnnotation();
-            message.setRecipients(Message.RecipientType.CC, ccAnnotation.value());
+            if (ccAnnotation != null) {
+                final String ccText = changeIfInParameters(ccAnnotation.value(), pathParameters, args);
+                message.setRecipients(Message.RecipientType.CC, ccText);
+            }
 
             final Bcc bccAnnotation = methodInfo.getBccAnnotation();
-            message.setRecipients(Message.RecipientType.BCC, bccAnnotation.value());
+            if (bccAnnotation != null) {
+                final String bccText = changeIfInParameters(bccAnnotation.value(), pathParameters, args);
+                message.setRecipients(Message.RecipientType.BCC, bccText);
+            }
 
             final Subject subjectAnnotation = methodInfo.getSubjectAnnotation();
-            final String subjectValue = changeIfInParameters(subjectAnnotation.value(), pathParameters, args);
-            final String subjectCharset = subjectAnnotation.charset();
-            message.setSubject(subjectValue, subjectCharset);
+            if (subjectAnnotation != null) {
+                final String subjectValue = changeIfInParameters(subjectAnnotation.value(), pathParameters, args);
+                final String subjectCharset = subjectAnnotation.charset();
+                message.setSubject(subjectValue, subjectCharset);
+            }
 
             return message;
         }

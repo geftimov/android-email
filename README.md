@@ -1,5 +1,28 @@
-## android-empty-project
-This is empty project to start open source library.
+## android-email
+Android library for sending emails.
+
+## Usage
+
+1) Compose email :
+
+    public interface EmailServiceTest {
+
+       @To("jokatavr@gmail.com")
+       @Cc("{cc}")
+       @Subject("Android Test")
+       @Email("Hello {username}. This is sparta.")
+       void spartaEmail(@Param("username") final String username, @Param("cc") final String cc, final Callback callback);
+    }
+    
+2) Send email :
+    
+    test.spartaEmail("Georgi", "opelastra100@gmail.com", new CallbackImpl());
+    
+3) Result :
+
+![email](https://github.com/geftimov/android-email/blob/master/art/email.png)
+
+
 
 ## Licence
 

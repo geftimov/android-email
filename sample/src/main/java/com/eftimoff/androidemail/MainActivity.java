@@ -18,7 +18,7 @@ public class MainActivity extends ActionBarActivity {
         final Runnable runnable = new Runnable() {
             @Override
             public void run() {
-                test.spartaEmail("ASD", "123", new Callback() {
+                test.spartaEmail("Georgi", "opelastra100@gmail.com", new Callback() {
                     @Override
                     public void success() {
                         System.out.println("success");
