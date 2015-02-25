@@ -1,3 +1,5 @@
+# It is still in development
+
 ## android-email
 Android library for sending emails.
 
